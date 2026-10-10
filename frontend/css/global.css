@@ -1,0 +1,56 @@
+/* BAB 1: RESET & CONTAINER */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #121212; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 430px; 
+    height: 100vh;
+    max-height: 932px; 
+    position: relative;
+    overflow: hidden; 
+    border-radius: 40px; 
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+
+@media (max-width: 430px) {
+    .mobile-container {
+        border-radius: 0;
+        max-height: 100vh;
+    }
+}
+
+/* BAB 2: BACKGROUND YANTI GOLD */
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/yantigold.png'); 
+    background-size: cover; 
+    background-position: center; 
+    z-index: 1; 
+}
+
+.bg-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.4) 100%);
+}

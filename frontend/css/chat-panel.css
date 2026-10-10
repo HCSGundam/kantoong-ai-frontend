@@ -1,0 +1,206 @@
+/* ========================================= */
+/* BAB 4: PANEL CHAT GLASSMORPHISM           */
+/* ========================================= */
+
+.chat-panel {
+    position: absolute;
+    bottom: -2px; 
+    left: 0;
+    width: 100%;
+    height: 55%; 
+    
+    /* 1. TINGKAT WARNA PUTIH & KEJERNIHAN (Pantulan Cahaya Kaca) */
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.25) 0%, 
+        rgba(255, 255, 255, 0.08) 100%
+    ); 
+    
+    /* 2. TINGKAT BLUR & SATURASI */
+    backdrop-filter: blur(8px) saturate(110%);
+    -webkit-backdrop-filter: blur(8px) saturate(110%);
+    
+    /* 3. BINGKAI PUTIH 3D */
+    border-top: 1.5px solid rgba(255, 255, 255, 0.65);
+    border-left: 1.2px solid rgba(255, 255, 255, 0.3);
+    border-right: 1.2px solid rgba(255, 255, 255, 0.3);
+    border-bottom: none;
+    
+    /* Lengkungan */
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    
+    /* 4. BAYANGAN HALUS */
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
+    
+    transition: height 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 10; 
+    
+    /* PENGATURAN FLEXBOX UTAMA (DI-UPDATE DI SINI) */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* KUNCI: Menjaga jarak atas dan bawah tetap terkunci */
+    overflow: hidden;               /* KUNCI: Mencegah elemen meluber keluar bingkai */
+    padding: 15px 20px;
+    box-sizing: border-box;
+}
+
+/* Kelas untuk 3 Fase Panel */
+.panel-half { height: 55%; transform: translateY(0); }
+.panel-full { height: 88%; transform: translateY(0); }
+.panel-hidden { transform: translateY(110%); }
+
+/* Garis kecil putih di tengah atas panel (Drag Handle) */
+.drag-handle {
+    width: 45px;
+    height: 4px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0 auto 15px auto; 
+    opacity: 0.8;
+    cursor: pointer;
+    touch-action: none;
+}
+
+/* Bagian tulisan "Chat" dan Ikon 3 Titik */
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.chat-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.chat-header svg {
+    cursor: pointer;
+}
+
+/* ========================================= */
+/* --- TOMBOL ORB AI (WARNA-WARNI & HIDUP) --- */
+/* ========================================= */
+.logo-btn-bulat {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 80px;
+    height: 80px;
+    
+    /* GRADASI WARNA DINAMIS (Pink, Ungu, Biru, Hijau halus ala AI Orb) */
+    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95), rgba(255, 120, 200, 0.7) 40%, rgba(150, 100, 255, 0.6) 70%, rgba(80, 200, 255, 0.5) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    border-radius: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    
+    /* Efek pendaran cahaya warna-warni (glow) di sekeliling orb */
+    box-shadow: 0 0 30px rgba(200, 150, 255, 0.6), inset 0 0 18px rgba(255, 255, 255, 0.9);
+    
+    z-index: 20;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: orbFloat 3s infinite ease-in-out, colorShift 6s infinite alternate ease-in-out;
+}
+
+.logo-btn-bulat:active {
+    transform: translateX(-50%) scale(0.9);
+}
+
+/* Animasi mengambang pelan */
+@keyframes orbFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-6px); }
+}
+
+/* Animasi pergeseran warna orb supaya dinamis berubah (pink, biru, ungu, hijau) */
+@keyframes colorShift {
+    0% {
+        filter: hue-rotate(0deg);
+        box-shadow: 0 0 30px rgba(255, 100, 200, 0.6), inset 0 0 18px rgba(255, 255, 255, 0.9);
+    }
+    50% {
+        filter: hue-rotate(90deg); /* Bergeser ke nuansa hijau/kebiruan */
+        box-shadow: 0 0 35px rgba(100, 220, 255, 0.7), inset 0 0 18px rgba(255, 255, 255, 0.9);
+    }
+    100% {
+        filter: hue-rotate(180deg); /* Bergeser ke nuansa ungu/kebiruan pekat */
+        box-shadow: 0 0 30px rgba(150, 120, 255, 0.7), inset 0 0 18px rgba(255, 255, 255, 0.9);
+    }
+}
+
+/* --- DUA MATA LUCU BERKEDIP --- */
+.logo-btn-bulat #logoText.ai-eyes {
+    display: flex !important;
+    flex-direction: row !important; 
+    gap: 10px !important;           
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+    height: 100%;
+}
+
+.logo-btn-bulat #logoText.ai-eyes .eye {
+    width: 7px !important;
+    height: 14px !important;
+    background-color: white !important;
+    border-radius: 50px !important; 
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+    animation: blink 2.5s infinite; /* Kedipan lebih sering dan hidup */
+}
+
+@keyframes blink {
+    0%, 85%, 100% { transform: scaleY(1); }
+    90% { transform: scaleY(0.1); }
+}
+
+/* --- GELOMBANG NAIK TURUN (SUPER CEPAT & DINAMIS) --- */
+.listening-dots {
+    display: flex;
+    gap: 6px; 
+    align-items: center;
+    justify-content: center;
+}
+
+.listening-dots .dot {
+    width: 6px;  
+    height: 28px; 
+    background-color: white !important; 
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    /* Kecepatan dipangkas jadi jauh lebih cepat (0.5s) biar lincah! */
+    animation: waveBounce 0.5s infinite alternate ease-in-out;
+}
+
+/* Jeda waktu antar titik disingkat rapat */
+.listening-dots .dot:nth-child(1) { animation-delay: 0.05s; }
+.listening-dots .dot:nth-child(2) { animation-delay: 0.15s; }
+.listening-dots .dot:nth-child(3) { animation-delay: 0.25s; }
+.listening-dots .dot:nth-child(4) { animation-delay: 0.35s; }
+
+@keyframes waveBounce {
+    0% { transform: scaleY(0.3); }
+    100% { transform: scaleY(1.4); }
+}
+
+/* --- PENGAMAN: SAAT GELOMBANG AKTIF, ORB & MATANYA HILANG TOTAL --- */
+.logo-btn-bulat:has(#logoDots[style*="display: flex"]) {
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    animation: none !important;
+}
+
+.logo-btn-bulat:has(#logoDots[style*="display: flex"]) #logoText {
+    display: none !important;
+}

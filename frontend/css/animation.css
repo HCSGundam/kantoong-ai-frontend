@@ -1,0 +1,77 @@
+/* ========================================= */
+/* BAB 6: ANIMASI AIR MENCAIR (GOOEY EFFECT) */
+/* ========================================= */
+
+/* Menyembunyikan fase yang belum aktif */
+.fase-hidden {
+    display: none !important;
+}
+
+/* 1. Tombol Bulat Logo Brand (Fase 1) */
+.logo-btn-bulat {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #e5c07b, #c5a059); /* Emas */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin: 0 auto;
+    color: black;
+    font-weight: bold;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+}
+.logo-btn-bulat:active {
+    transform: scale(0.8); /* Mengecil saat dipencet */
+}
+
+/* 2. Wadah Efek Cairan AI (Fase 3) */
+.liquid-ai-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    /* INI KUNCI UTAMANYA: Mengaktifkan filter air dari HTML */
+}
+
+/* 3. Bola-bola yang akan memanjang seperti suara/air */
+.liquid-dot {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 2px;
+    /* Animasi bergerak naik turun */
+    animation: gelombangAir 1.2s ease-in-out infinite;
+}
+
+/* Memberi jeda tiap bola agar geraknya bergantian (mengombak) */
+.liquid-dot:nth-child(1) { animation-delay: 0.0s; }
+.liquid-dot:nth-child(2) { animation-delay: 0.2s; }
+.liquid-dot:nth-child(3) { animation-delay: 0.4s; }
+.liquid-dot:nth-child(4) { animation-delay: 0.6s; }
+
+/* 4. Keyframes Gerakan Mencair & Memanjang (Sesuai sketsa No. 3) */
+@keyframes gelombangAir {
+    0%, 100% {
+        transform: scaleY(1) translateY(0);
+        border-radius: 50%;
+    }
+    50% {
+        transform: scaleY(3.5) translateY(-10px); /* Memanjang ke atas seperti kapsul */
+        border-radius: 20px;
+    }
+}
+
+/* Posisi absolut di bawah untuk fase 1, 2, dan 3 */
+.interaksi-bawah {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    z-index: 20;
+}
