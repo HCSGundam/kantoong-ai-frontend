@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Harga Emas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+ 
+<style>
+  :root{
+    --gp-bg:#0e0d0b; --gp-panel:#15130f; --gp-line:rgba(226,196,126,.16);
+    --gp-gold:#e2c47e; --gp-gold-deep:#b8934a; --gp-ivory:#f4efe4; --gp-mute:#9a9384;
+    --gp-up:#7fcf9b; --gp-down:#e58b7b;
+    --gp-serif:"Cormorant Garamond",Georgia,serif;
+    --gp-sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  body{margin:0;font-family:var(--gp-sans);background:transparent;min-height:100vh}
+ 
+  .gp-overlay{
+    position:fixed;inset:0;z-index:1000;display:grid;place-items:center;
+    padding:14px;
+    background:rgba(4,4,3,.78);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  }
+ 
+  .gp-card{
+    position:relative;width:100%;max-width:380px;max-height:85vh;
+    display:flex;flex-direction:column;overflow:hidden;color:var(--gp-ivory);
+    border-radius:24px;border:1px solid var(--gp-line);
+    background:
+      radial-gradient(120% 70% at 0% 0%,rgba(226,196,126,.10),transparent 55%),
+      linear-gradient(180deg,#18160f,var(--gp-bg));
+    box-shadow:0 20px 50px rgba(0,0,0,.75);
+  }
+  .gp-card::before{content:"";position:absolute;top:0;left:12%;right:12%;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gp-gold),transparent)}
+ 
+  .gp-close{position:absolute;top:14px;right:14px;z-index:2;width:34px;height:34px;border-radius:50%;
+    border:1px solid var(--gp-line);background:rgba(255,255,255,.04);color:var(--gp-ivory);
+    cursor:pointer;display:grid;place-items:center;transition:background .2s}
+  .gp-close:hover{background:rgba(255,255,255,.1)}
+ 
+  .gp-scroll{overflow-y:auto;overscroll-behavior:contain;padding:22px 18px 8px; scrollbar-width:none;}
+  .gp-scroll::-webkit-scrollbar{display:none}
+ 
+  .gp-head{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end;padding-right:36px}
+  .gp-title{font-family:var(--gp-serif);font-weight:500;font-size:20px;line-height:1.1;margin:0;letter-spacing:.2px}
+  .gp-live{display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-size:11.5px;color:var(--gp-mute)}
+  .gp-dot{width:6px;height:6px;border-radius:50%;background:var(--gp-up);animation:gp-pulse 2s infinite}
+  @keyframes gp-pulse{70%{box-shadow:0 0 0 6px rgba(127,207,155,0)}100%{box-shadow:0 0 0 0 rgba(127,207,155,0)}}
+ 
+  .gp-time{text-align:right}
+  .gp-clock{font-family:var(--gp-serif);font-size:22px;font-weight:500;line-height:1;
+    font-variant-numeric:tabular-nums;color:var(--gp-gold)}
+  .gp-clock small{font-size:.45em;margin-left:4px;color:var(--gp-mute);font-family:var(--gp-sans)}
+  .gp-date{display:inline-flex;align-items:center;gap:5px;margin-top:5px;font-size:11.5px;color:var(--gp-mute)}
+ 
+  .gp-hero{margin:16px 0 6px;padding:14px;border-radius:16px;border:1px solid var(--gp-line);
+    background:linear-gradient(135deg,rgba(226,196,126,.09),rgba(226,196,126,.02));
+    display:grid;grid-template-columns:1fr 90px;gap:10px;align-items:center}
+  .gp-hero-label{font-size:11px;color:var(--gp-mute)}
+  .gp-hero-price{font-family:var(--gp-serif);font-weight:600;font-size:22px;line-height:1.1;margin:4px 0;
+    font-variant-numeric:tabular-nums;background:linear-gradient(180deg,#f6e3b0,var(--gp-gold) 55%,var(--gp-gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .gp-hero-price span{font-size:.4em;color:var(--gp-mute);-webkit-text-fill-color:var(--gp-mute);font-family:var(--gp-sans);font-weight:400}
+  .gp-spark{width:100%;height:45px;overflow:visible}
+ 
+  .gp-section{margin-top:16px}
+  .gp-section h3{margin:0 0 6px;font-family:var(--gp-serif);font-weight:500;font-size:16px;color:var(--gp-ivory);
+    display:flex;align-items:center;gap:8px}
+  .gp-section h3::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gp-line),transparent)}
+  .gp-cols{display:grid;grid-template-columns:1fr auto auto;gap:4px 12px;padding:0 2px 4px;font-size:10.5px;color:var(--gp-mute)}
+  .gp-cols span:nth-child(n+2){text-align:right;min-width:80px}
+  .gp-row{display:grid;grid-template-columns:1fr auto auto;gap:4px 12px;align-items:center;
+    padding:9px 2px;border-top:1px solid rgba(255,255,255,.06)}
+  .gp-name{font-size:13px;font-weight:600}
+  .gp-name small{display:block;margin-top:1px;font-weight:400;font-size:11px;color:var(--gp-mute)}
+  .gp-buy{min-width:80px;text-align:right;font-size:12px;color:var(--gp-mute);font-variant-numeric:tabular-nums}
+  .gp-sell{min-width:80px;text-align:right;font-variant-numeric:tabular-nums}
+  .gp-sell b{display:block;font-size:14px;font-weight:600;color:var(--gp-ivory)}
+  .gp-chg{font-size:10.5px;margin-top:1px;display:block}
+  .gp-chg.up{color:var(--gp-up)} .gp-chg.down{color:var(--gp-down)}
+ 
+  .gp-foot{margin-top:14px;padding:12px 18px;font-size:11px;color:var(--gp-mute);
+    border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+ 
+<div class="gp-overlay" id="gpOverlay">
+  <section class="gp-card">
+    <button class="gp-close" id="gpClose" aria-label="Tutup">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 2l10 10M12 2L2 12"/></svg>
+    </button>
+ 
+    <div class="gp-scroll">
+      <header class="gp-head">
+        <div>
+          <h2 class="gp-title">Harga Emas &amp; Perak Hari Ini</h2>
+          <div class="gp-live"><i class="gp-dot"></i><span id="gpPlace">Langsung · Bandung</span></div>
+        </div>
+        <div class="gp-time">
+          <div class="gp-clock"><span id="gpClock">--:--:--</span><small id="gpZone">WIB</small></div>
+          <div class="gp-date">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e2c47e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/><circle cx="12" cy="15" r="1.1" fill="#e2c47e"/></svg>
+            <span id="gpDate">—</span>
+          </div>
+        </div>
+      </header>
+ 
+      <div class="gp-hero">
+        <div>
+          <div class="gp-hero-label">Emas 24 karat · harga jual per gram</div>
+          <div class="gp-hero-price">Rp 2.385.000<span> /gram</span></div>
+          <span class="gp-chg up">▲ +0,8% dibanding kemarin</span>
+        </div>
+        <svg class="gp-spark" id="gpSpark" viewBox="0 0 200 64" preserveAspectRatio="none"></svg>
+      </div>
+ 
+      <div id="gpLists">
+        <div class="gp-section">
+          <h3>Emas Perhiasan</h3>
+          <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+          <div class="gp-row">
+            <div class="gp-name">Emas 24 Karat<small>per gram</small></div>
+            <div class="gp-buy">Rp 2.190.000</div>
+            <div class="gp-sell"><b>Rp 2.385.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+          </div>
+          <div class="gp-row">
+            <div class="gp-name">Emas 22 Karat<small>per gram</small></div>
+            <div class="gp-buy">Rp 2.005.000</div>
+            <div class="gp-sell"><b>Rp 2.190.000</b><span class="gp-chg up">▲ +0,6%</span></div>
+          </div>
+          <div class="gp-row">
+            <div class="gp-name">Emas 18 Karat<small>per gram</small></div>
+            <div class="gp-buy">Rp 1.640.000</div>
+            <div class="gp-sell"><b>Rp 1.790.000</b><span class="gp-chg down">▼ -0,3%</span></div>
+          </div>
+        </div>
+
+        <div class="gp-section">
+          <h3>Logam Mulia</h3>
+          <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+          <div class="gp-row">
+            <div class="gp-name">LM 1 gram<small>batangan</small></div>
+            <div class="gp-buy">Rp 2.250.000</div>
+            <div class="gp-sell"><b>Rp 2.510.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+          </div>
+          <div class="gp-row">
+            <div class="gp-name">LM 5 gram<small>batangan</small></div>
+            <div class="gp-buy">Rp 11.160.000</div>
+            <div class="gp-sell"><b>Rp 12.290.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+          </div>
+        </div>
+
+        <div class="gp-section">
+          <h3>Perak</h3>
+          <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+          <div class="gp-row">
+            <div class="gp-name">Perak 999<small>per gram</small></div>
+            <div class="gp-buy">Rp 21.500</div>
+            <div class="gp-sell"><b>Rp 26.800</b><span class="gp-chg down">▼ -0,4%</span></div>
+          </div>
+          <div class="gp-row">
+            <div class="gp-name">Perak Lantakan<small>100 gram</small></div>
+            <div class="gp-buy">Rp 2.140.000</div>
+            <div class="gp-sell"><b>Rp 2.680.000</b><span class="gp-chg down">▼ -0,4%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="gp-foot">
+      <span>Diperbarui hari ini</span>
+      <span>Harga acuan, dapat berbeda di toko.</span>
+    </div>
+  </section>
+</div>
+ 
+<script>
+  function tick(){
+    const now = new Date();
+    document.getElementById('gpClock').textContent = now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+    document.getElementById('gpDate').textContent = now.toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long'});
+  }
+  setInterval(tick, 1000);
+  tick();
+
+  document.getElementById('gpClose').onclick = () => {
+    window.parent.document.getElementById('goldFrameContainer').style.display = 'none';
+  };
+</script>
+</body>
+</html>
