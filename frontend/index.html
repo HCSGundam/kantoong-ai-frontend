@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/chat-panel.css">
     <link rel="stylesheet" href="css/input-bar.css">
     <link rel="stylesheet" href="css/chat-bubble.css">
+    <link rel="stylesheet" href="css/gold-modal.css">
 </head>
 <body>
     <div class="mobile-container" style="position: relative;">
@@ -105,20 +106,61 @@
         <iframe src="components/gold.price.html" style="width: 100%; height: 100%; border: none;"></iframe>
     </div>
 
-    <!-- SCRIPT TOMBOL KLIK -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.getElementById('dynamicActionBtn');
-        const container = document.getElementById('goldFrameContainer');
+    <!-- MEMANGGIL FILE MODULAR DENGAN FETCH -->
+    <div id="goldModalContainer"></div>
 
-        if (btn && container) {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            container.style.display = 'block';
-          });
-        }
-      });
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Memuat komponen HTML harga emas secara dinamis
+        fetch('components/gold-price-modal.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('goldModalContainer').innerHTML = html;
+
+                // Inisialisasi tombol setelah elemen berhasil dimuat
+                const btn = document.getElementById('dynamicActionBtn');
+                const modal = document.getElementById('goldPriceModal');
+                const closeBtn = document.getElementById('closeGoldModal');
+
+                if (btn && modal) {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        modal.style.display = 'flex';
+                        // Buat fungsi untuk memperbarui jam secara real-time
+                        const updateClock = () => {
+                            const now = new Date();
+                            const clockEl = document.getElementById('gpClock');
+                            const dateEl = document.getElementById('gpDate');
+                            if (clockEl) clockEl.textContent = now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+                            if (dateEl) dateEl.textContent = now.toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long'});
+                        };
+
+                        // Jalankan saat tombol diklik pertama kali
+                        updateClock();
+
+                        // Jalankan otomatis setiap 1 detik agar jam terus bergerak
+                        setInterval(updateClock, 1000);
+                    });
+                }
+
+                if (closeBtn && modal) {
+                    closeBtn.addEventListener('click', () => {
+                        modal.style.display = 'none';
+                    });
+                }
+
+                if (modal) {
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    });
+                }
+            })
+            .catch(error => console.error('Gagal memuat komponen harga emas:', error));
+    });
     </script>
+
     
 </body>
 </html>

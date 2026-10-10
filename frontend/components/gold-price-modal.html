@@ -1,0 +1,220 @@
+<!-- ===================== PANEL POPUP HARGA EMAS (SEMPURNA & RAPI) ===================== -->
+<div class="gp-overlay" id="goldPriceModal" aria-hidden="true" style="display: none;">
+    <section class="gp-card" role="dialog" aria-modal="true" aria-labelledby="gpTitle">
+        <button class="gp-close" id="closeGoldModal" aria-label="Tutup">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 2l10 10M12 2L2 12"/></svg>
+        </button>
+    
+        <!-- 1. HEADER TETAP (TIDAK IKUT SCROLL) -->
+        <div class="gp-fixed-header">
+            <header class="gp-head">
+                <div>
+                    <h2 class="gp-title" id="gpTitle">Harga Emas &amp; Perak Hari Ini</h2>
+                    <div class="gp-live"><i class="gp-dot"></i><span id="gpPlace">Langsung · Bandung</span></div>
+                </div>
+                <div class="gp-time">
+                    <div class="gp-clock"><span id="gpClock">--:--:--</span><small id="gpZone">WIB</small></div>
+                    <div class="gp-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e2c47e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/><circle cx="12" cy="15" r="1.1" fill="#e2c47e"/></svg>
+                        <span id="gpDate">—</span>
+                    </div>
+                </div>
+            </header>
+    
+            <!-- Hero Harga Emas 24K -->
+            <div class="gp-hero">
+                <div>
+                    <div class="gp-hero-label">Emas 24 karat · harga jual per gram</div>
+                    <div class="gp-hero-price" id="gpHeroPrice">Rp 2.385.000<span> /gram</span></div>
+                    <span class="gp-chg up" id="gpHeroChg">▲ +0,8% dibanding kemarin</span>
+                </div>
+                <svg class="gp-spark" id="gpSpark" viewBox="0 0 200 64" preserveAspectRatio="none" aria-label="Tren 7 hari terakhir"></svg>
+            </div>
+        </div>
+
+        <!-- 2. AREA SCROLL DENGAN EFEK FADE (GRADASI ATAS & BAWAH) -->
+        <div class="gp-scroll">
+            <div id="gpLists">
+                <!-- Kategori Emas Perhiasan -->
+                <div class="gp-section">
+                    <h3>Emas Perhiasan</h3>
+                    <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+                    <div class="gp-row">
+                        <div class="gp-name">Emas 24 Karat<small>per gram</small></div>
+                        <div class="gp-buy">Rp 2.190.000</div>
+                        <div class="gp-sell"><b>Rp 2.385.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+                    </div>
+                    <div class="gp-row">
+                        <div class="gp-name">Emas 22 Karat<small>per gram</small></div>
+                        <div class="gp-buy">Rp 2.005.000</div>
+                        <div class="gp-sell"><b>Rp 2.190.000</b><span class="gp-chg up">▲ +0,6%</span></div>
+                    </div>
+                    <div class="gp-row">
+                        <div class="gp-name">Emas 18 Karat<small>per gram</small></div>
+                        <div class="gp-buy">Rp 1.640.000</div>
+                        <div class="gp-sell"><b>Rp 1.790.000</b><span class="gp-chg down">▼ -0,3%</span></div>
+                    </div>
+                </div>
+
+                <!-- Kategori Logam Mulia -->
+                <div class="gp-section">
+                    <h3>Logam Mulia</h3>
+                    <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+                    <div class="gp-row">
+                        <div class="gp-name">LM 1 gram<small>batangan</small></div>
+                        <div class="gp-buy">Rp 2.250.000</div>
+                        <div class="gp-sell"><b>Rp 2.510.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+                    </div>
+                    <div class="gp-row">
+                        <div class="gp-name">LM 5 gram<small>batangan</small></div>
+                        <div class="gp-buy">Rp 11.160.000</div>
+                        <div class="gp-sell"><b>Rp 12.290.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+                    </div>
+                </div>
+
+                <!-- Kategori Perak -->
+                <div class="gp-section">
+                    <h3>Perak</h3>
+                    <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+                    <div class="gp-row">
+                        <div class="gp-name">Perak 999<small>per gram</small></div>
+                        <div class="gp-buy">Rp 21.500</div>
+                        <div class="gp-sell"><b>Rp 26.800</b><span class="gp-chg down">▼ -0,4%</span></div>
+                    </div>
+                    <div class="gp-row">
+                        <div class="gp-name">Perak Lantakan<small>100 gram</small></div>
+                        <div class="gp-buy">Rp 2.140.000</div>
+                        <div class="gp-sell"><b>Rp 2.680.000</b><span class="gp-chg down">▼ -0,4%</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- 3. FOOTER TETAP (TIDAK IKUT SCROLL) -->
+        <div class="gp-foot">
+            <span id="gpUpdated">Diperbarui hari ini</span>
+            <span>Harga acuan, dapat berbeda di toko.</span>
+        </div>
+    </section>
+</div>
+
+<!-- ===================== CSS ELEGANT & FORMAL ===================== -->
+<style>
+:root{
+    --gp-bg:#0e0d0b; --gp-line:rgba(226,196,126,.16);
+    --gp-gold:#e2c47e; --gp-gold-deep:#b8934a; --gp-ivory:#f4efe4; --gp-mute:#9a9384;
+    --gp-up:#7fcf9b; --gp-down:#e58b7b;
+    --gp-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Overlay persis di tengah layar secara mutlak */
+.gp-overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    background: rgba(4, 4, 3, 0.78);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+
+/* Kartu utama */
+.gp-card{
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: var(--gp-ivory);
+    border-radius: 20px;
+    border: 1px solid var(--gp-line);
+    background: linear-gradient(180deg, #18160f, var(--gp-bg));
+    box-shadow: 0 20px 50px rgba(0,0,0,0.75);
+    font-family: var(--gp-font);
+}
+
+.gp-close{
+    position: absolute; top: 14px; right: 14px; z-index: 10; width: 32px; height: 32px; border-radius: 50%;
+    border: 1px solid var(--gp-line); background: rgba(255,255,255,.04); color: var(--gp-ivory);
+    cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s;
+}
+.gp-close:hover{ background: rgba(255,255,255,.1); }
+
+/* Bagian Atas yang Dikunci (Sticky Header) */
+.gp-fixed-header {
+    padding: 22px 18px 8px;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, #18160f, var(--gp-bg));
+    z-index: 5;
+}
+
+/* Area Scroll dengan efek FADE (Memudar di bagian atas & bawah) */
+.gp-scroll{
+    flex-grow: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 4px 18px 16px;
+    scrollbar-width: none; /* Firefox */
+    
+    /* Efek Gradasi Fade / Buram Halus di Atas dan Bawah */
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+.gp-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Header */
+.gp-head{ display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; padding-right: 32px; font-family: var(--gp-font); }
+.gp-title{ font-weight: 600; font-size: 18px; line-height: 1.2; margin: 0; color: var(--gp-ivory); }
+.gp-live{ display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 11px; color: var(--gp-mute); }
+.gp-dot{ width: 6px; height: 6px; border-radius: 50%; background: var(--gp-up); animation: gp-pulse 2s infinite; }
+@keyframes gp-pulse{ 70%{box-shadow:0 0 0 6px rgba(127,207,155,0)} 100%{box-shadow:0 0 0 0 rgba(127,207,155,0)} }
+
+.gp-time{ text-align: right; }
+.gp-clock{ font-size: 20px; font-weight: 600; line-height: 1.1; color: var(--gp-gold); font-variant-numeric: tabular-nums; }
+.gp-clock small{ font-size: 0.7em; margin-left: 3px; color: var(--gp-mute); font-weight: 400; }
+.gp-date{ display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; font-size: 11px; color: var(--gp-mute); }
+
+/* Hero */
+.gp-hero{ margin: 16px 0 4px; padding: 14px; border-radius: 14px; border: 1px solid var(--gp-line); background: rgba(226,196,126,.04); display: grid; grid-template-columns: 1fr 100px; gap: 10px; align-items: center; }
+.gp-hero-label{ font-size: 11px; color: var(--gp-mute); }
+.gp-hero-price{ font-weight: 700; font-size: 22px; line-height: 1.2; margin: 4px 0; color: var(--gp-gold); font-variant-numeric: tabular-nums; }
+.gp-hero-price span{ font-size: 0.5em; color: var(--gp-mute); font-weight: 400; }
+.gp-spark{ width: 100%; height: 45px; overflow: visible; }
+
+/* Daftar Harga */
+.gp-section{ margin-top: 16px; }
+.gp-section h3{ margin: 0 0 6px; font-weight: 600; font-size: 15px; color: var(--gp-ivory); display: flex; align-items: center; gap: 8px; }
+.gp-section h3::after{ content:""; flex:1; height:1px; background:var(--gp-line); }
+.gp-cols{ display: grid; grid-template-columns: 1fr auto auto; gap: 4px 10px; padding: 0 2px 4px; font-size: 10.5px; color: var(--gp-mute); }
+.gp-cols span:nth-child(n+2){ text-align: right; min-width: 80px; }
+.gp-row{ display: grid; grid-template-columns: 1fr auto auto; gap: 4px 10px; align-items: center; padding: 9px 2px; border-top: 1px solid rgba(255,255,255,.05); }
+.gp-name{ font-size: 12.5px; font-weight: 600; }
+.gp-name small{ display: block; margin-top: 1px; font-weight: 400; font-size: 10.5px; color: var(--gp-mute); }
+.gp-buy{ min-width: 80px; text-align: right; font-size: 11.5px; color: var(--gp-mute); }
+.gp-sell{ min-width: 80px; text-align: right; }
+.gp-sell b{ display: block; font-size: 13px; font-weight: 600; color: var(--gp-ivory); }
+.gp-chg{ font-size: 10.5px; margin-top: 1px; display: block; font-weight: 600; }
+.gp-chg.up{ color: var(--gp-up); } .gp-chg.down{ color: var(--gp-down); }
+
+/* Bagian Bawah yang Dikunci (Sticky Footer) */
+.gp-foot{
+    padding: 12px 18px;
+    font-size: 10.5px;
+    color: var(--gp-mute);
+    border-top: 1px solid rgba(255,255,255,.05);
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    background: linear-gradient(0deg, #18160f, var(--gp-bg));
+    z-index: 5;
+}
+</style>
