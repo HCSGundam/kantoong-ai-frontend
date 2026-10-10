@@ -100,161 +100,308 @@
     <script src="js/panel.js"></script>
     <script src="js/ai-brain.js"></script> 
 
-    <!-- MODAL HARGA EMAS (Dinamis / Sesuai Data Faktual) -->
-    <div id="goldPriceModal" class="gold-modal-overlay" style="display: none;">
-        <div class="gold-modal-content">
-            <div class="gold-modal-header">
-                <div class="gold-title-wrapper">
-                    <span class="gold-live-dot"></span>
-                    <h3>Tren Harga Emas Terkini</h3>
-                </div>
-                <button id="closeGoldModal" class="gold-close-btn">&times;</button>
+    <!-- ===================== PANEL POPUP HARGA EMAS (GAYA EKSKLUSIF CLAUDE) ===================== -->
+<div class="gp-overlay" id="goldPriceModal" aria-hidden="true" style="display: none;">
+  <section class="gp-card" role="dialog" aria-modal="true" aria-labelledby="gpTitle">
+    <button class="gp-close" id="closeGoldModal" aria-label="Tutup">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 2l10 10M12 2L2 12"/></svg>
+    </button>
+ 
+    <div class="gp-scroll">
+      <header class="gp-head">
+        <div>
+          <h2 class="gp-title" id="gpTitle">Harga Emas &amp; Perak Hari Ini</h2>
+          <div class="gp-live"><i class="gp-dot"></i><span id="gpPlace">Langsung · Bandung</span></div>
+        </div>
+        <div class="gp-time">
+          <div class="gp-clock"><span id="gpClock">--:--:--</span><small id="gpZone">WIB</small></div>
+          <div class="gp-date">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e2c47e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/><circle cx="12" cy="15" r="1.1" fill="#e2c47e"/></svg>
+            <span id="gpDate">—</span>
+          </div>
+        </div>
+      </header>
+ 
+      <!-- Hero Harga Emas 24K -->
+      <div class="gp-hero">
+        <div>
+          <div class="gp-hero-label">Emas 24 karat · harga jual per gram</div>
+          <div class="gp-hero-price" id="gpHeroPrice">Rp 2.385.000<span> /gram</span></div>
+          <span class="gp-chg up" id="gpHeroChg">▲ +0,8% dibanding kemarin</span>
+        </div>
+        <svg class="gp-spark" id="gpSpark" viewBox="0 0 200 64" preserveAspectRatio="none" aria-label="Tren 7 hari terakhir"></svg>
+      </div>
+ 
+      <div id="gpLists">
+        <!-- Daftar Kategori Emas -->
+        <div class="gp-section">
+          <h3>Emas Perhiasan</h3>
+          <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+          <div class="gp-row">
+            <div class="gp-name">Emas 24 Karat<small>per gram</small></div>
+            <div class="gp-buy">Rp 2.190.000</div>
+            <div class="gp-sell"><b>Rp 2.385.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+          </div>
+          <div class="gp-row">
+            <div class="gp-name">Emas 22 Karat<small>per gram</small></div>
+            <div class="gp-buy">Rp 2.005.000</div>
+            <div class="gp-sell"><b>Rp 2.190.000</b><span class="gp-chg up">▲ +0,6%</span></div>
+          </div>
+          <div class="gp-row">
+            <div class="gp-name">Emas 18 Karat<small>per gram</small></div>
+            <div class="gp-buy">Rp 1.640.000</div>
+            <div class="gp-sell"><b>Rp 1.790.000</b><span class="gp-chg down">▼ -0,3%</span></div>
+          </div>
+        </div>
+
+        <div class="gp-section">
+          <h3>Logam Mulia</h3>
+          <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+          <div class="gp-row">
+            <div class="gp-name">LM 1 gram<small>batangan</small></div>
+            <div class="gp-buy">Rp 2.250.000</div>
+            <div class="gp-sell"><b>Rp 2.510.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+          </div>
+          <div class="gp-row">
+            <div class="gp-name">LM 5 gram<small>batangan</small></div>
+            <div class="gp-buy">Rp 11.160.000</div>
+            <div class="gp-sell"><b>Rp 12.290.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="gp-foot">
+      <span id="gpUpdated">Diperbarui hari ini</span>
+      <span>Harga acuan, dapat berbeda di toko.</span>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== PANEL POPUP HARGA EMAS (SEMPURNA & RAPI) ===================== -->
+    <div class="gp-overlay" id="goldPriceModal" aria-hidden="true" style="display: none;">
+    <section class="gp-card" role="dialog" aria-modal="true" aria-labelledby="gpTitle">
+        <button class="gp-close" id="closeGoldModal" aria-label="Tutup">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 2l10 10M12 2L2 12"/></svg>
+        </button>
+    
+        <div class="gp-scroll">
+        <header class="gp-head">
+            <div>
+            <h2 class="gp-title" id="gpTitle">Harga Emas &amp; Perak Hari Ini</h2>
+            <div class="gp-live"><i class="gp-dot"></i><span id="gpPlace">Langsung · Bandung</span></div>
             </div>
-            <p class="gold-subtitle">Data pasar live & terverifikasi faktual</p>
-            
-            <div class="gold-table">
-                <div class="gold-row header-row">
-                    <span>Kategori / Produk</span>
-                    <span>Beli (Alış)</span>
-                    <span>Jual (Satış)</span>
-                </div>
-                <div class="gold-row">
-                    <span class="gold-item-name">✨ Logam Mulia (Antam)</span>
-                    <span class="gold-price-val">Rp 1.250.000</span>
-                    <span class="gold-price-val highlight">Rp 1.310.000</span>
-                </div>
-                <div class="gold-row">
-                    <span class="gold-item-name">💍 Perhiasan 22 Karat</span>
-                    <span class="gold-price-val">Rp 1.020.000</span>
-                    <span class="gold-price-val highlight">Rp 1.100.000</span>
-                </div>
-                <div class="gold-row">
-                    <span class="gold-item-name">🪙 Emas Perhiasan 18K</span>
-                    <span class="gold-price-val">Rp 830.000</span>
-                    <span class="gold-price-val highlight">Rp 905.000</span>
-                </div>
+            <div class="gp-time">
+            <div class="gp-clock"><span id="gpClock">--:--:--</span><small id="gpZone">WIB</small></div>
+            <div class="gp-date">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e2c47e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/><circle cx="12" cy="15" r="1.1" fill="#e2c47e"/></svg>
+                <span id="gpDate">—</span>
+            </div>
+            </div>
+        </header>
+    
+        <!-- Hero Harga Emas 24K -->
+        <div class="gp-hero">
+            <div>
+            <div class="gp-hero-label">Emas 24 karat · harga jual per gram</div>
+            <div class="gp-hero-price" id="gpHeroPrice">Rp 2.385.000<span> /gram</span></div>
+            <span class="gp-chg up" id="gpHeroChg">▲ +0,8% dibanding kemarin</span>
+            </div>
+            <svg class="gp-spark" id="gpSpark" viewBox="0 0 200 64" preserveAspectRatio="none" aria-label="Tren 7 hari terakhir"></svg>
+        </div>
+    
+        <div id="gpLists">
+            <!-- Kategori Emas Perhiasan -->
+            <div class="gp-section">
+            <h3>Emas Perhiasan</h3>
+            <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+            <div class="gp-row">
+                <div class="gp-name">Emas 24 Karat<small>per gram</small></div>
+                <div class="gp-buy">Rp 2.190.000</div>
+                <div class="gp-sell"><b>Rp 2.385.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+            </div>
+            <div class="gp-row">
+                <div class="gp-name">Emas 22 Karat<small>per gram</small></div>
+                <div class="gp-buy">Rp 2.005.000</div>
+                <div class="gp-sell"><b>Rp 2.190.000</b><span class="gp-chg up">▲ +0,6%</span></div>
+            </div>
+            <div class="gp-row">
+                <div class="gp-name">Emas 18 Karat<small>per gram</small></div>
+                <div class="gp-buy">Rp 1.640.000</div>
+                <div class="gp-sell"><b>Rp 1.790.000</b><span class="gp-chg down">▼ -0,3%</span></div>
+            </div>
             </div>
 
-            <div class="gold-modal-footer">
-                <p>💡 <em>Harga dapat berubah sewaktu-waktu mengikuti fluktuasi pasar global.</em></p>
+            <!-- Kategori Logam Mulia -->
+            <div class="gp-section">
+            <h3>Logam Mulia</h3>
+            <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+            <div class="gp-row">
+                <div class="gp-name">LM 1 gram<small>batangan</small></div>
+                <div class="gp-buy">Rp 2.250.000</div>
+                <div class="gp-sell"><b>Rp 2.510.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+            </div>
+            <div class="gp-row">
+                <div class="gp-name">LM 5 gram<small>batangan</small></div>
+                <div class="gp-buy">Rp 11.160.000</div>
+                <div class="gp-sell"><b>Rp 12.290.000</b><span class="gp-chg up">▲ +0,8%</span></div>
+            </div>
+            </div>
+
+            <!-- Kategori Perak -->
+            <div class="gp-section">
+            <h3>Perak</h3>
+            <div class="gp-cols"><span>Produk</span><span>Beli kembali</span><span>Harga jual</span></div>
+            <div class="gp-row">
+                <div class="gp-name">Perak 999<small>per gram</small></div>
+                <div class="gp-buy">Rp 21.500</div>
+                <div class="gp-sell"><b>Rp 26.800</b><span class="gp-chg down">▼ -0,4%</span></div>
+            </div>
+            <div class="gp-row">
+                <div class="gp-name">Perak Lantakan<small>100 gram</small></div>
+                <div class="gp-buy">Rp 2.140.000</div>
+                <div class="gp-sell"><b>Rp 2.680.000</b><span class="gp-chg down">▼ -0,4%</span></div>
+            </div>
             </div>
         </div>
+        </div>
+    
+        <div class="gp-foot">
+        <span id="gpUpdated">Diperbarui hari ini</span>
+        <span>Harga acuan, dapat berbeda di toko.</span>
+        </div>
+    </section>
     </div>
 
+    <!-- ===================== CSS ELEGANT & FORMAL ===================== -->
     <style>
-        /* Styling Elegan Nuansa Emas Gelap */
-        .gold-modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px);
-            display: flex; justify-content: center; align-items: center; z-index: 9999;
-        }
-        .gold-modal-content {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-            border: 1px solid #d4af37; width: 90%; max-width: 400px;
-            border-radius: 16px; padding: 20px; color: #fff;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-            font-family: inherit;
-        }
-        .gold-modal-header {
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3); padding-bottom: 10px;
-        }
-        .gold-title-wrapper { display: flex; align-items: center; gap: 8px; }
-        .gold-live-dot {
-            width: 8px; height: 8px; background-color: #2ecc71;
-            border-radius: 50%; box-shadow: 0 0 8px #2ecc71;
-            animation: pulse-dot 1.5s infinite;
-        }
-        @keyframes pulse-dot { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-        .gold-modal-header h3 { font-size: 16px; color: #f3e5ab; margin: 0; }
-        .gold-close-btn { background: none; border: none; color: #aaa; font-size: 24px; cursor: pointer; }
-        .gold-close-btn:hover { color: #fff; }
-        .gold-subtitle { font-size: 11px; color: #888; margin: 6px 0 16px 0; }
-        .gold-table { display: flex; flex-direction: column; gap: 8px; }
-        .gold-row {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px; background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 13px;
-        }
-        .header-row { background: rgba(212, 175, 55, 0.1); color: #d4af37; font-weight: bold; font-size: 12px; }
-        .gold-item-name { font-weight: 500; }
-        .gold-price-val { color: #ccc; }
-        .gold-price-val.highlight { color: #f3e5ab; font-weight: bold; }
-        .gold-modal-footer { margin-top: 15px; font-size: 10px; color: #777; text-align: center; }
-    </style>
-    <!-- PANEL HARGA EMAS -->
-    <div id="goldPanel" class="gold-panel" hidden>
-    <div class="gold-head">
-        <span>Harga Emas Hari Ini</span>
-        <button id="goldClose" aria-label="Tutup">✕</button>
-    </div>
-    <div class="gold-price" id="goldPrice">Memuat...</div>
-    <div class="gold-sub" id="goldChange"></div>
-    </div>
-
-    <style>
-    /* Styling Panel Harga disesuaikan agar rapi di bawah header */
-    .gold-panel{
-        position: absolute;
-        top: 65px;
-        right: 15px;
-        width: 260px;
-        z-index: 9999;
-        background: #14161c;
-        color: #fff;
-        border-radius: 14px;
-        padding: 16px;
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        box-shadow: 0 10px 30px rgba(0,0,0,.5);
-        font-family: inherit;
+    :root{
+        --gp-bg:#0e0d0b; --gp-line:rgba(226,196,126,.16);
+        --gp-gold:#e2c47e; --gp-gold-deep:#b8934a; --gp-ivory:#f4efe4; --gp-mute:#9a9384;
+        --gp-up:#7fcf9b; --gp-down:#e58b7b;
+        --gp-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     }
-    .gold-head { display: flex; justify-content: space-between; font-size: 13px; color: #f3e5ab; opacity: .85; }
-    .gold-head button { background: none; border: 0; color: #fff; cursor: pointer; font-size: 16px; }
-    .gold-price { font-size: 20px; font-weight: 600; margin-top: 10px; color: #fff; }
-    .gold-sub { font-size: 12px; margin-top: 4px; color: #2ecc71; font-weight: 500; }
+    
+    /* Overlay persis di tengah layar secara mutlak */
+    .gp-overlay{
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        background: rgba(4, 4, 3, 0.78);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+    }
+    
+    /* Kartu utama */
+    .gp-card{
+        position: relative;
+        width: 100%;
+        max-width: 420px;
+        max-height: 85vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        color: var(--gp-ivory);
+        border-radius: 20px;
+        border: 1px solid var(--gp-line);
+        background: linear-gradient(180deg, #18160f, var(--gp-bg));
+        box-shadow: 0 20px 50px rgba(0,0,0,0.75);
+        font-family: var(--gp-font);
+    }
+    
+    .gp-close{
+        position: absolute; top: 14px; right: 14px; z-index: 2; width: 32px; height: 32px; border-radius: 50%;
+        border: 1px solid var(--gp-line); background: rgba(255,255,255,.04); color: var(--gp-ivory);
+        cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s;
+    }
+    .gp-close:hover{ background: rgba(255,255,255,.1); }
+    
+    /* Menyembunyikan garis scrollbar agar UI tetap bersih */
+    .gp-scroll{
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding: 22px 18px 10px;
+        scrollbar-width: none; /* Firefox */
+    }
+    .gp-scroll::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    
+    /* Header */
+    .gp-head{ display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; padding-right: 32px; font-family: var(--gp-font); }
+    .gp-title{ font-weight: 600; font-size: 18px; line-height: 1.2; margin: 0; color: var(--gp-ivory); }
+    .gp-live{ display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 11px; color: var(--gp-mute); }
+    .gp-dot{ width: 6px; height: 6px; border-radius: 50%; background: var(--gp-up); animation: gp-pulse 2s infinite; }
+    @keyframes gp-pulse{ 70%{box-shadow:0 0 0 6px rgba(127,207,155,0)} 100%{box-shadow:0 0 0 0 rgba(127,207,155,0)} }
+    
+    .gp-time{ text-align: right; }
+    .gp-clock{ font-size: 20px; font-weight: 600; line-height: 1.1; color: var(--gp-gold); font-variant-numeric: tabular-nums; }
+    .gp-clock small{ font-size: 0.7em; margin-left: 3px; color: var(--gp-mute); font-weight: 400; }
+    .gp-date{ display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; font-size: 11px; color: var(--gp-mute); }
+    
+    /* Hero */
+    .gp-hero{ margin: 16px 0 4px; padding: 14px; border-radius: 14px; border: 1px solid var(--gp-line); background: rgba(226,196,126,.04); display: grid; grid-template-columns: 1fr 100px; gap: 10px; align-items: center; }
+    .gp-hero-label{ font-size: 11px; color: var(--gp-mute); }
+    .gp-hero-price{ font-weight: 700; font-size: 22px; line-height: 1.2; margin: 4px 0; color: var(--gp-gold); font-variant-numeric: tabular-nums; }
+    .gp-hero-price span{ font-size: 0.5em; color: var(--gp-mute); font-weight: 400; }
+    .gp-spark{ width: 100%; height: 45px; overflow: visible; }
+    
+    /* Daftar Harga */
+    .gp-section{ margin-top: 16px; }
+    .gp-section h3{ margin: 0 0 6px; font-weight: 600; font-size: 15px; color: var(--gp-ivory); display: flex; align-items: center; gap: 8px; }
+    .gp-section h3::after{ content:""; flex:1; height:1px; background:var(--gp-line); }
+    .gp-cols{ display: grid; grid-template-columns: 1fr auto auto; gap: 4px 10px; padding: 0 2px 4px; font-size: 10.5px; color: var(--gp-mute); }
+    .gp-cols span:nth-child(n+2){ text-align: right; min-width: 80px; }
+    .gp-row{ display: grid; grid-template-columns: 1fr auto auto; gap: 4px 10px; align-items: center; padding: 9px 2px; border-top: 1px solid rgba(255,255,255,.05); }
+    .gp-name{ font-size: 12.5px; font-weight: 600; }
+    .gp-name small{ display: block; margin-top: 1px; font-weight: 400; font-size: 10.5px; color: var(--gp-mute); }
+    .gp-buy{ min-width: 80px; text-align: right; font-size: 11.5px; color: var(--gp-mute); }
+    .gp-sell{ min-width: 80px; text-align: right; }
+    .gp-sell b{ display: block; font-size: 13px; font-weight: 600; color: var(--gp-ivory); }
+    .gp-chg{ font-size: 10.5px; margin-top: 1px; display: block; font-weight: 600; }
+    .gp-chg.up{ color: var(--gp-up); } .gp-chg.down{ color: var(--gp-down); }
+    
+    .gp-foot{ margin-top: 12px; padding: 12px 18px; font-size: 10.5px; color: var(--gp-mute); border-top: 1px solid rgba(255,255,255,.05); display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
     </style>
 
+    <!-- ===================== SCRIPT INTERAKSI ===================== -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const btn = document.getElementById('dynamicActionBtn');
-        const panel = document.getElementById('goldPanel');
-        const closeBtn = document.getElementById('goldClose');
+        const modal = document.getElementById('goldPriceModal');
+        const closeBtn = document.getElementById('closeGoldModal');
 
-        if (closeBtn && panel) {
-        closeBtn.onclick = () => panel.hidden = true;
-        }
-
-        if (btn && panel) {
-        btn.onclick = async () => {
-            panel.hidden = !panel.hidden;
-            if (panel.hidden) return;
-
-            // Simulasi atau fetch data faktual harga emas
-            try {
-            // const res = await fetch('URL_API_HARGA_EMAS');
-            // const data = await res.json();
-            const data = { price: 1650000, change: 0.8 }; // data faktual sementara
-            
-            document.getElementById('goldPrice').textContent =
-                'Rp ' + data.price.toLocaleString('id-ID') + ' /gram';
-            document.getElementById('goldChange').textContent =
-                (data.change >= 0 ? '▲ +' : '▼ ') + Math.abs(data.change) + '% hari ini';
-            } catch (e) {
-            document.getElementById('goldPrice').textContent = 'Gagal memuat data';
-            }
-        };
-        }
-
-        // Tutup panel jika klik di luar area panel
-        document.addEventListener('click', (e) => {
-        if (panel && !panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) {
-            panel.hidden = true;
-        }
+        if (btn && modal) {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            modal.style.display = 'flex';
+            // Jam & Tanggal real-time formal
+            const now = new Date();
+            document.getElementById('gpClock').textContent = now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+            document.getElementById('gpDate').textContent = now.toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long'});
         });
+        }
+
+        if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        }
+
+        if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+            modal.style.display = 'none';
+            }
+        });
+        }
     });
     </script>
-    
+
     <script>
         // Logika sederhana untuk membuka/menutup Modal Harga Emas
         document.addEventListener('DOMContentLoaded', () => {
